@@ -1,10 +1,15 @@
-import { ROUTES } from "../shared/model/routes";
+import { Providers } from "@/app/providers";
 import { createBrowserRouter, redirect } from "react-router-dom";
+import { ROUTES } from "../shared/model/routes";
 import { App } from "./app";
 
 export const router = createBrowserRouter([
   {
-    element: <App />,
+    element: (
+    <Providers>
+      <App />
+    </Providers>
+    ),
     children: [
       {
         path: ROUTES.BOARDS,
