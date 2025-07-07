@@ -1,5 +1,5 @@
 import { setupWorker } from "msw/browser";
 import { boardsHandlers } from "./handlers/boards";
-import { authHandlers } from "@/shared/api/mocks/handlers/auth";
+import { authHandlers } from "./handlers/auth";
 
-export const worker = setupWorker(...boardsHandlers, ...authHandlers);
+export const worker = setupWorker(...authHandlers, ...boardsHandlers);
