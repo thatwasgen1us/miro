@@ -32,6 +32,18 @@ export function useIdleViewModel({
       selectedIds: selectItems(lastState.selectedIds, ids, modificator)
     })
   }
+
+  const deleteSelected = (viewState: IdleViewState) => {
+    if (viewState.selectedIds.size > 0) {
+      const ids = Array.from(viewState.selectedIds)
+      nodesModel.deleteNodes(ids)
+      setViewState({
+        ...viewState,
+        selectedIds: new Set()
+      })
+    }
+  }
+
   
   return (idleState: IdleViewState): ViewModel => ({
     nodes: nodesModel.nodes.map((node) => ({
@@ -49,6 +61,10 @@ export function useIdleViewModel({
       onKeyDown: (event) => {
         if (event.key === 's') {
           setViewState(goToAddSticker());
+        }
+
+        if (event.key === 'Delete' || event.key === 'Backspace') {
+          deleteSelected(idleState)
         }
       },
     },

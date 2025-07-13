@@ -9,7 +9,7 @@ export function Canvas({
   return (
     <div
       {...props}
-      className="absolute inset-0 "
+      className="absolute inset-0 select-none"
       ref={ref}
     >
       {children}
